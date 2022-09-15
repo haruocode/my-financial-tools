@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/haruocode/my-financial-tools/issues"
   },
-  "homepage": "https://github.com/haruocode/my-financial-tools#readme"
+  "homepage": "https://github.com/haruocode/my-financial-tools#readme",
+  "dependencies": {
+    "csv": "^6.2.0",
+    "csv-writer": "^1.6.0",
+    "puppeteer": "^17.1.3"
+  }
 }
