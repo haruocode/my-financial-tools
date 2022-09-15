@@ -1,0 +1,19 @@
+{
+  "name": "my-financial-tools",
+  "version": "1.0.0",
+  "description": "家計管理や確定申告(freee)のためのツール達",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haruocode/my-financial-tools.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haruocode/my-financial-tools/issues"
+  },
+  "homepage": "https://github.com/haruocode/my-financial-tools#readme"
+}
