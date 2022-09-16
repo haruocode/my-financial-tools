@@ -15,7 +15,7 @@ fs.createReadStream(filePath)
       results.push({
         date: data.date,
         title: data.title,
-        price: data.price,
+        price: Number(data.price),
       })
   })
   .on('end', () => {
