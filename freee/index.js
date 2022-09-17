@@ -1,9 +1,19 @@
 const csv = require('csv-parser')
+const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const fs = require('fs')
 const results = [];
 
 // 読み込みたいCSVファイルのパスを設定
 const filePath = './epos_csv/all.csv'
+
+const csvWriter = createCsvWriter({
+    path: './output_csv/freee.csv',
+    header: [
+      { id: 'date', title: '日付' },
+      { id: 'title', title: '項目' },
+      { id: 'price', title: '金額' },
+    ],
+  });
 
 fs.createReadStream(filePath)
   .pipe(csv({
@@ -19,18 +29,12 @@ fs.createReadStream(filePath)
       })
   })
   .on('end', () => {
-    console.log(results)
-    // console.log(results.map(row => {
-    //     return {
-    //         date: row.date,
-    //         title: row.title,
-    //         price: Number(row.price),
-    //     }
-    // }));
-    // [
-    //   { NAME: 'Daffy Duck', AGE: '24' },
-    //   { NAME: 'Bugs Bunny', AGE: '22' }
-    // ]
+    // console.log(results)
+    // 書き込み
+    csvWriter.writeRecords(results)
+    .then(() => {
+      console.log('done');
+    });
   });
 
 // dateの値が日付形式かチェック
