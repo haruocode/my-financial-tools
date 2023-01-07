@@ -7,7 +7,7 @@ const scrapePaypay = async () => {
   // 既存のChromeを使う
   // ターミナルで以下のコマンドを実行する
   // $ /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222
-  const wsChromeEndpointUrl = 'ws://127.0.0.1:9222/devtools/browser/033e535f-b8c8-41c6-917c-83b3badfa400'
+  const wsChromeEndpointUrl = 'ws://127.0.0.1:9222/devtools/browser/996f239c-ebb6-41bf-b66b-b4126ba9445b'
   const browser = await puppeteer.connect({
       browserWSEndpoint: wsChromeEndpointUrl,
       defaultViewport: null,
@@ -37,11 +37,11 @@ const scrapePaypay = async () => {
     // "202202", // ※ネットキャッシングのみのため対象外
     // "202203", // ※インポート済み
     "202204",
-    "202205",
-    "202206",
-    "202207",
-    "202208",
-    "202209",
+    // "202205",
+    // "202206",
+    // "202207",
+    // "202208",
+    // "202209", // ※利用明細がない
   ]
 
   // データ格納用配列
@@ -127,7 +127,7 @@ const scrapePaypay = async () => {
   paypayments = paypayments.map((p) => ({
     ...p,
     class: "支出",
-    account: "通信費",
+    account: "雑収入",
     taxClass: "課対仕入10%",
     taxCalcClass: "税込",
     paymentAccount: "ＰａｙＰａｙカード",
