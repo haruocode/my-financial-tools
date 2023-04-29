@@ -2,7 +2,15 @@ require('dotenv').config();
 import { test, expect } from '@playwright/test';
 
 test('みずほ銀行の残高参照', async ({ page }) => {
+  const navigationPromise = page.waitForNavigation();
   await page.goto('https://web.ib.mizuhobank.co.jp/servlet/LOGBNK0000000B.do');
+  await navigationPromise;
+  await page.waitForTimeout(2000)
+  if(page.url() === 'https://www.mizuhobank.co.jp/internet_service/jikangai.html') {
+    console.log('メンテナンス中…')
+    return
+  }
+
   await page.locator('#txbCustNo').click();
   await page.locator('#txbCustNo').fill(process.env.MIZUHO_BANK_NO);
   await page.getByRole('button', { name: '次 へ' }).click();
