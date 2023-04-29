@@ -2,7 +2,15 @@ require('dotenv').config();
 import { test, expect } from '@playwright/test';
 
 test('新生銀行', async ({ page }) => {
+  const navigationPromise = page.waitForNavigation();
   await page.goto('https://bk.web.sbishinseibank.co.jp/SFC/apps/services/www/SFC/desktopbrowser/default/login?mode=1');
+  await navigationPromise;
+  await page.waitForTimeout(2000)
+  if(page.url() === 'https://bk.web.sbishinseibank.co.jp/maintenance/maintpage.html?mode=1') {
+    console.log('メンテナンス中…')
+    return
+  }
+
   await page.locator('input[name="nationalId"]').click();
   await page.locator('input[name="nationalId"]').fill(process.env.SHINSEI_BANK_NO);
   await page.locator('#loginPassword').click();
