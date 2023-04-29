@@ -13,6 +13,6 @@ test('じぶん銀行カードローン', async ({ page }) => {
 
   // 利用総額
   // TODO: もっといい取得方法があるはず・・
-  const targetElm = page.locator('tr').nth(13).locator('td').nth(1)
-  console.log(await targetElm.innerText())
+  const amount = await page.locator('tr').nth(13).locator('td').nth(1).innerText()
+  console.log(`じぶん銀行カードローン: ${amount}`)
 });

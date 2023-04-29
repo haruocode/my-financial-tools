@@ -16,5 +16,5 @@ test('じぶん銀行の残高参照', async ({ page }) => {
 
   // 残高参照
   const amount = await page1.getByRole('listitem').filter({ hasText: '預かり資産残高' }).locator('p').innerText();
-  console.log(`じぶん銀行残高: ${amount}`)
+  console.log(`じぶん銀行: ${amount}`)
 });
