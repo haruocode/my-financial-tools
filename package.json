@@ -15,6 +15,7 @@
   },
   "homepage": "https://github.com/haruocode/my-financial-tools#readme",
   "dependencies": {
+    "axios": "^1.4.0",
     "csv": "^6.2.0",
     "csv-parser": "^3.0.0",
     "csv-writer": "^1.6.0",
