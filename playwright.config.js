@@ -29,6 +29,14 @@ module.exports = defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+
+    // いつも使っているChromeを使う
+    // headless: false,
+    // viewport: { width: 1600, height: 1000},
+    // channel: 'chrome',
+    // launchOptions: {
+    //     executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    // },
   },
 
   /* Configure projects for major browsers */
