@@ -1,13 +1,12 @@
+require('dotenv').config();
 import { test, expect } from '@playwright/test';
 
 // TODO: そもそもテストにするのはおかしい・・
 test('じぶん銀行カードローン', async ({ page }) => {
   await page.goto('https://www1.loan-alliance.com/LaWebp/pc/jibun/PKLI01.do');
   await page.locator('input[name="accountNumber"]').click();
-  // TODO: 入力情報を環境変数にする
-  await page.locator('input[name="accountNumber"]').fill('');
-  // TODO: 入力情報を環境変数にする
-  await page.locator('input[name="pinNumber"]').fill('');
+  await page.locator('input[name="accountNumber"]').fill(process.env.JIBUN_LOAN_NO);
+  await page.locator('input[name="pinNumber"]').fill(process.env.JIBUN_LOAN_PASS);
   await page.getByRole('button', { name: 'ログイン' }).click();
 
   await page.getByRole('link', { name: '利用状況照会' }).click();
