@@ -16,6 +16,7 @@ test('新生銀行', async ({ page }) => {
 
   // 画面表示時は一瞬0円なのでネットワーク状況も見る
   await page.waitForLoadState('networkidle');
+  await page.waitForTimeout(2000)
 
   // 残高
   const amount = await page.locator('td.PTP0001_totalAmountTableTd span.ng-binding').innerText();
