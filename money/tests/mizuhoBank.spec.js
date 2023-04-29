@@ -2,10 +2,7 @@ require('dotenv').config();
 import { test, expect } from '@playwright/test';
 
 test('みずほ銀行の残高参照', async ({ page }) => {
-  const navigationPromise = page.waitForNavigation();
-  await page.goto('https://web.ib.mizuhobank.co.jp/servlet/LOGBNK0000000B.do');
-  await navigationPromise;
-  await page.waitForTimeout(2000)
+  await page.goto('https://web.ib.mizuhobank.co.jp/servlet/LOGBNK0000000B.do', { waitUntil: 'networkidle' });
   if(page.url() === 'https://www.mizuhobank.co.jp/internet_service/jikangai.html') {
     console.log('メンテナンス中…')
     return
