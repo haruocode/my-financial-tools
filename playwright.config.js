@@ -38,6 +38,9 @@ module.exports = defineConfig({
     // launchOptions: {
     //     executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
     // },
+
+    // ビデオ録画機能を使いたい時
+    // video: 'on',
   },
 
   /* Configure projects for major browsers */
