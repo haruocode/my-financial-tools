@@ -3,7 +3,7 @@ const { chromium } = require('playwright');
 import { test, expect } from '@playwright/test';
 
 test('PayPayカード', async () => {
-  const { data } = await axios.get('http://localhost:9222/json/version')
+  const { data } = await axios.get('http://127.0.0.1:9222/json/version')
   const wsEndpoint = data.webSocketDebuggerUrl
   const browser = await chromium.connectOverCDP(wsEndpoint);
   const defaultContext = browser.contexts()[0];
