@@ -12,7 +12,7 @@ test('PayPayカード', async () => {
   await page.goto('https://www.paypay-card.co.jp/member/setting/display-balance', { waitUntil: 'networkidle' });
 
   // 残高参照
-  const selector = '.src-components-atoms-TableItem-TableItem__value-33kw > p'
+  const selector = 'table > tr > td > p'
   const amount = await page.locator(selector).nth(1).innerText()
   console.log(`PayPayカード: ${amount}`)
 });
