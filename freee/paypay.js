@@ -19,7 +19,7 @@ const scrapePaypay = async () => {
    * 操作手順
    *
    * - アクセス(https://www.paypay-card.co.jp/member/statement/monthly?targetYm=202210&showSts=0)
-   * - 2022年1月から8月まで順番にアクセスする
+   * - 2023年2月から11月まで順番にアクセスする
    * - 項目名と日付と金額をDOM操作で取得する
    * - 翌月にアクセスする
    * - 上記を繰り返す
@@ -37,13 +37,13 @@ const scrapePaypay = async () => {
     "202302", //
     "202303", //
     "202304", //
-    // "202305", //
-    // "202306", //
-    // "202307", //
-    // "202308", //
-    // "202309", //
-    // "202310", //
-    // "202311", //
+    "202305", //
+    "202306", //
+    "202307", //
+    "202308", //
+    "202309", //
+    "202310", //
+    "202311", //
     // "202312", //
   ]
 
@@ -53,16 +53,14 @@ const scrapePaypay = async () => {
   // ループ処理
   for(let targetYm of targetYmList) {
 
-    // console.log(convertDateFormat("2022年11月12日"))
-
     // 画面にアクセス
     await page.goto(`${url}?targetYm=${targetYm}`);
 
     // DOM操作で項目名、日付、金額の一覧を取得
-    await page.waitForSelector('.index_ListSettlement_NIWTA', {visible: true})
+    await page.waitForSelector('._ListSettlement__labelMain_1kf6q_43', {visible: true})
 
     // 明細一覧の項目、日付、金額を取得する
-    const dataList = await page.$$eval('.index_ListSettlement__listItem_PrfnU', (items) => {
+    const dataList = await page.$$eval('._ListSettlement__list_1kf6q_8', (items) => {
       const convertDateFormat = (jpDate) => {
         let str = jpDate.replace("年", "/")
         str = str.replace("月", "/")
@@ -70,9 +68,9 @@ const scrapePaypay = async () => {
         return str
       }
       return items.map((item) => {
-        const title = item.querySelector('.index_ListSettlement__labelMain_20cjQ').innerHTML
-        const jpDate = item.querySelector('.index_ListSettlement__date_1jxtk').innerHTML
-        const priceBox = item.querySelector('.index_ListSettlement__summary_eJl4_')
+        const title = item.querySelector('._ListSettlement__labelMain_1kf6q_43').innerHTML
+        const jpDate = item.querySelector('._ListSettlement__date_1kf6q_53').innerHTML
+        const priceBox = item.querySelector('._ListSettlement__summary_1kf6q_61')
         const price = priceBox.querySelector('span').innerHTML
         return {
           title: title && title.trim(),
@@ -130,7 +128,7 @@ const scrapePaypay = async () => {
   paypayments = paypayments.map((p) => ({
     ...p,
     class: "支出",
-    account: "雑収入",
+    account: "雑費",
     taxClass: "課対仕入10%",
     taxCalcClass: "税込",
     paymentAccount: "ＰａｙＰａｙカード",
