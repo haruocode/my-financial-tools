@@ -14,7 +14,9 @@ test('みずほ銀行の残高参照', async ({ page }) => {
   await page.locator('#PASSWD_LoginPwdInput').click();
   await page.locator('#PASSWD_LoginPwdInput').fill(process.env.MIZUHO_BANK_PASS);
   await page.getByRole('button', { name: 'ログイン' }).click();
-  await page.getByRole('link', { name: '＞ 次へ' }).click();
+
+  // 現在はお知らせが無いため不要
+  // await page.getByRole('link', { name: '＞ 次へ' }).click();
 
   // 残高参照
   const amount = await page.locator('table.n02000-t3 tr').nth(4).locator('td').innerText()
